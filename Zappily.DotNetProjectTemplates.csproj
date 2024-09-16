@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Zappily.DotNetProjectTemplates</PackageId>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Title>Zappily .NET Project Templates</Title>
+    <Authors>Zappily</Authors>
+    <Description>This package offers a collection of .NET project templates for use with the "dotnet new" command</Description>
+    <PackageTags>WinForms, ASP.NET Core, AspNetCore</PackageTags>
+    <PackageProjectUrl>https://github.com/Zappily/DotNetProjectTemplates</PackageProjectUrl>
+
+    <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
+    <PackageType>Template</PackageType>
+    <TargetFramework>net8.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LocalizeTemplates>false</LocalizeTemplates>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TemplateEngine.Tasks" Version="*" PrivateAssets="all" IsImplicitlyDefined="true"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
