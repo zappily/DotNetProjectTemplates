@@ -38,15 +38,15 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore .NET Dependencies
-        run: dotnet restore
+        run: dotnet restore Zappily.DotNetProjectTemplates.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore Zappily.DotNetProjectTemplates.csproj
 
       - name: Pack
         run: |
           $version = "${{ steps.get_version.outputs.VERSION }}-alpha-${{ steps.get_short_commit_hash.outputs.COMMIT_HASH }}" 
-          dotnet pack --configuration Release --no-build --output ./nupkg /p:Version=$version
+          dotnet pack --configuration Release --no-build --output ./nupkg /p:Version=$version Zappily.DotNetProjectTemplates.csproj
           $nupkgPath = Get-ChildItem -Path ./nupkg -Filter *.nupkg | Select-Object -ExpandProperty FullName
           echo "NUPKG_PATH=$nupkgPath" >> $env:GITHUB_ENV
 
