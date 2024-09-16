@@ -38,15 +38,12 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore .NET Dependencies
-        working-directory: WinFormsAspNetCoreSingleExe
         run: dotnet restore
 
       - name: Build
-        working-directory: WinFormsAspNetCoreSingleExe
         run: dotnet build --configuration Release --no-restore
 
       - name: Pack
-        working-directory: WinFormsAspNetCoreSingleExe
         run: |
           $version = "${{ steps.get_version.outputs.VERSION }}-alpha-${{ steps.get_short_commit_hash.outputs.COMMIT_HASH }}" 
           dotnet pack --configuration Release --no-build --output ./nupkg /p:Version=$version
